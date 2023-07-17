@@ -23,6 +23,9 @@ const App = () => {
     if(action.type === "REMOVE_CART") {
       return {...state, cart: action.payload}
     }
+    if(action.type === "CART") {
+      return {...state, cart: action.payload}
+    }
     
     return state
   }
@@ -31,6 +34,7 @@ const App = () => {
     products: [],
     wish: [],
     cart: [],
+    categories: [],
   }
 
   const [state, dispatch] = useReducer(reducer, initialValue)

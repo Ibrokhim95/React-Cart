@@ -6,26 +6,59 @@ import { productsContex } from '../App'
 const Home = () => {
 
     const [state, dispatch] = useContext(productsContex)
-
-    // console.log(state.products[1]);
-
-    const cartList = (item, id) => {
-        const filt = state.cart.filter(listItem => listItem.id !== id)
-        if(state.cart.map(item => item.id !== id)) {
-            dispatch({type: "ADD_CART", payload: item})
+    
+    
+    
+    const cartList = (item) => {
+        // localStorage.setItem("cart", JSON.stringify([item]))
+        const removeItem = state.cart.filter(listItem => listItem.id !== item.id)
+        if(state.cart.length > 0) {
+            if(state.cart.some(pr => pr.id === item.id)){
+                dispatch({type: "REMOVE_CART", payload: removeItem})
+                localStorage.setItem("cart", JSON.stringify(state.cart))
+            } else {
+                dispatch({type: "ADD_CART", payload: item})
+                localStorage.setItem("cart", JSON.stringify(state.cart))
+            }
         } else {
-            dispatch({type: "REMOVE_CART", payload: filt})
+            dispatch({type: "ADD_CART", payload: item})
+            localStorage.setItem("cart", JSON.stringify(state.cart))
         }
-        console.log(filt);
+        // const store = JSON.parse(localStorage.getItem("list"))
+        // dispatch({type: "CART", payload: store})
+        
     }
+    localStorage.setItem("cart", JSON.stringify(state.cart))
+    // localStorage.setItem("cart", JSON.stringify(store))
+
+
+
+    const getCategoryData = async () => {
+        try {
+          const resp = await fetch('https://dummyjson.com/products/category/smartphones')
+          const data = await resp.json()
+          console.log(data);
+        //   dispatch({type: "ALL_PRODUCTS", payload: products})
+        } catch (error) {
+          console.log(error);
+        }
+      } 
+      getCategoryData()
+
 
     return (
     <div className='main-container pb-20'>
         
         <div>
-            <div className="my-4">
-                all
-            </div>
+            <select onSubmit={(e) => categories(e)} name="" id="" className='outline-none rounded my-4'>
+                <option value="all">all</option>
+                <option value="smartphones">smartphones</option>
+                <option value="laptops">laptops</option>
+                <option value="fragrances">fragrances</option>
+                <option value="skincare">skincare</option>
+                <option value="goceries">groceries</option>
+                <option value="home-decoration">home-decoration</option>
+            </select>
         </div>
 
         <div className='grid grid-cols-4 gap-8'>
@@ -35,7 +68,7 @@ const Home = () => {
                     <img className='w-[100%] h-[100%] object-cover' src={item.thumbnail} alt="" />
                 
                     <div className='absolute inset-0 bg-white/50 opacity-100 hover:opacity-100 transition-all flex items-center justify-center gap-2'>
-                        <svg onClick={() => cartList(item, item.id)} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-10 h-10 bg-red-500 rounded-full p-2 text-white hover:bg-gray-700">
+                        <svg onClick={() => cartList(item)} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-10 h-10 bg-red-500 rounded-full p-2 text-white hover:bg-gray-700">
                               <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
                         </svg>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-10 h-10 bg-red-500 rounded-full p-2 text-white hover:bg-gray-700">
