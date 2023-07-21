@@ -89,7 +89,7 @@ const Home = () => {
 
 
     return (
-        <div className='xl:w-[1200px] lg:w-[1000px] md:w-[700px] md:border-none sm:w-[600px] border border-blue-600 sm:border-red-600 mx-auto pb-20'>
+        <div className='w-[80%] xl:w-[1200px] lg:w-[1000px] md:w-[700px] sm:w-[600px] mx-auto pb-20'>
             <div className='flex justify-between items-center'>
                 <select onChange={(e) => sort(e.target.value)} name="" id="" className='outline-none rounded my-4'>
                     <option value="all">all</option>
@@ -112,7 +112,7 @@ const Home = () => {
                 </div>
             </div>
 
-            <div id='cols' className='grid grid-cols-4 gap-8'>
+            <div id='cols' className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-8'>
                 {state.products.map(item => (
                     <div key={item.id} className='shadow rounded-md overflow-hidden hover:shadow-lg'>
                         <div className='h-[260px] w-[100%] relative'>

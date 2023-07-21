@@ -17,7 +17,9 @@ export const ProductsContex = createContext()
 const App = () => {
 
   const reducer = (state, action) => {
-    if(action.type === "PRODUCTS") {
+    if(action.type === "ALL_PRODUCTS") {
+      return {...state, AllProducts: action.payload}
+    }    if(action.type === "PRODUCTS") {
       return {...state, products: action.payload}
     }
     if(action.type === "ADD_CART") {
@@ -43,6 +45,7 @@ const App = () => {
 
   
   const initialValue = {
+    AllProducts: [],
     products: [],
     wish: [],
     cart: [],
@@ -57,6 +60,7 @@ const App = () => {
       try {
         const {data: {products}} = await axios.get("/products") 
         dispatch({type: "PRODUCTS", payload: products})
+        dispatch({type: "ALL_PRODUCTS", payload: products})
       } catch (error) {
         console.log(error);
       }

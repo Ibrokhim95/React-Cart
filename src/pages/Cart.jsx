@@ -10,7 +10,7 @@ const Cart = () => {
   let LS = JSON.parse(localStorage.getItem('cart')) ?? []
 
   return (
-    <div className='main-container'>
+    <div className='w-[80%] xl:w-[1200px] lg:w-[1000px] md:w-[700px] sm:w-[600px] mx-auto'>
         {LS.map(item => (
           <div key={item.id} className="flex my-2 shadow rounded-lg overflow-hidden w-[60%]">
             <div className='w-[25%]'>

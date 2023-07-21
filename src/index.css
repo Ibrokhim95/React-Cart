@@ -3,10 +3,10 @@
 @tailwind utilities;
 
 
-.main-container {
-    max-width: 1200px;
+/* .main-container {
+    max-width: 380px;
     margin: auto;
-}
+} */
 
 /* @media (max-width: 1080) {
     .main-container{
@@ -14,3 +14,16 @@
         border: 3px solid red;
     }
 } */
+
+@media (max-width: 1024px) {
+    #menu {
+        position: absolute;
+    }
+}
+@media (max-width: 565px) {
+    #bars {
+        position: absolute;
+        top: -70%;
+        right: 30px;
+    }
+}
