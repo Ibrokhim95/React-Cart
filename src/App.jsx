@@ -1,5 +1,6 @@
 
 
+import axios from 'axios'
 import React, { useEffect, useReducer } from 'react'
 import { createContext } from 'react'
 import { Route, Routes } from 'react-router-dom'
@@ -9,15 +10,13 @@ import About from './pages/About'
 import Cart from './pages/Cart'
 import Home from './pages/Home'
 import WishList from './pages/WishList'
+import "./axios/global-instances"
 
 export const ProductsContex = createContext()
 
 const App = () => {
 
   const reducer = (state, action) => {
-    if(action.type === "ALL_PRODUCTS") {
-      return {...state, allProducts: action.payload}
-    }
     if(action.type === "PRODUCTS") {
       return {...state, products: action.payload}
     }
@@ -44,7 +43,6 @@ const App = () => {
 
   
   const initialValue = {
-    allProducts: [],
     products: [],
     wish: [],
     cart: [],
@@ -57,9 +55,7 @@ const App = () => {
   useEffect(() => {
     const getData = async () => {
       try {
-        const resp = await fetch('https://dummyjson.com/products')
-        const {products} = await resp.json()
-        dispatch({type: "ALL_PRODUCTS", payload: products})
+        const {data: {products}} = await axios.get("/products") 
         dispatch({type: "PRODUCTS", payload: products})
       } catch (error) {
         console.log(error);

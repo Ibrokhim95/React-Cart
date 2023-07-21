@@ -7,3 +7,10 @@
     max-width: 1200px;
     margin: auto;
 }
+
+/* @media (max-width: 1080) {
+    .main-container{
+        max-width: 1000;
+        border: 3px solid red;
+    }
+} */

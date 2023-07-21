@@ -1,8 +1,9 @@
 
-
+import axios from 'axios'
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { ProductsContex } from '../App'
+import "../axios/global-instances"
 
 export const cartList = (item, state, dispatch) => {
     let LS = JSON.parse(localStorage.getItem('cart')) ?? []
@@ -44,17 +45,15 @@ const Home = () => {
     const sort = async (e) => {
             if(e === "all") {
                 try {
-                    const resp = await fetch('https://dummyjson.com/products')
-                    const {products} = await resp.json()
-                    dispatch({type: "ALL_PRODUCTS", payload: products})
+                    const {data: {products}} = await axios.get("/products")
+                    dispatch({type: "PRODUCTS", payload: products})
                 } catch (error) {
                     console.log(error);
                 }
             } else {
                 try {
-                    const resp = await fetch(`https://dummyjson.com/products/category/${e}`)
-                    const {products} = await resp.json()
-                    dispatch({type: "ALL_PRODUCTS", payload: products})
+                    const {data: {products}} = await axios.get(`products/category/${e}`)
+                    dispatch({type: "PRODUCTS", payload: products})
                 } catch (error) {
                     console.log(error);
                 }
@@ -88,10 +87,9 @@ const Home = () => {
         dispatch({type: "ITEM", payload: obj})
     }
 
-    console.log(state.allProducts[0]);
 
     return (
-        <div className='main-container pb-20'>
+        <div className='xl:w-[1200px] lg:w-[1000px] md:w-[700px] md:border-none sm:w-[600px] sm:border border-red-600 mx-auto pb-20'>
             <div className='flex justify-between items-center'>
                 <select onChange={(e) => sort(e.target.value)} name="" id="" className='outline-none rounded my-4'>
                     <option value="all">all</option>
