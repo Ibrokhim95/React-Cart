@@ -89,7 +89,7 @@ const Home = () => {
 
 
     return (
-        <div className='xl:w-[1200px] lg:w-[1000px] md:w-[700px] md:border-none sm:w-[600px] sm:border border-red-600 mx-auto pb-20'>
+        <div className='xl:w-[1200px] lg:w-[1000px] md:w-[700px] md:border-none sm:w-[600px] border border-blue-600 sm:border-red-600 mx-auto pb-20'>
             <div className='flex justify-between items-center'>
                 <select onChange={(e) => sort(e.target.value)} name="" id="" className='outline-none rounded my-4'>
                     <option value="all">all</option>
