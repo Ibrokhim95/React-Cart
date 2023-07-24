@@ -22,6 +22,9 @@ const App = () => {
     }    if(action.type === "PRODUCTS") {
       return {...state, products: action.payload}
     }
+    if(action.type === "VALUE") {
+      return {...state, value: action.payload}
+    }
     if(action.type === "ADD_CART") {
       return {...state, cart: [...state.cart, action.payload]}
     }
@@ -34,9 +37,6 @@ const App = () => {
     if(action.type === "REMOVE_WISH") {
       return {...state, wish: action.payload}
     }
-    if(action.type === "VALUE") {
-      return {...state, value: action.payload}
-    }
     if(action.type === "ITEM") {
       return {...state, item: action.payload}
     }
@@ -47,9 +47,9 @@ const App = () => {
   const initialValue = {
     AllProducts: [],
     products: [],
+    value: "",
     wish: [],
     cart: [],
-    value: "",
     item: {},
   }
   
