@@ -1,16 +1,17 @@
 
 
 import axios from 'axios'
-import React, { useEffect, useReducer } from 'react'
+import React, { useEffect, useReducer, useState } from 'react'
 import { createContext } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Header from './components/Header'
 import Navbar from './components/Navbar'
-import About from './pages/About'
 import Cart from './pages/Cart'
 import Home from './pages/Home'
 import WishList from './pages/WishList'
 import "./axios/global-instances"
+import Modal from './components/Modal'
+import About from './pages/About'
 
 export const ProductsContex = createContext()
 
@@ -42,7 +43,6 @@ const App = () => {
     }
     return state
   }
-
   
   const initialValue = {
     AllProducts: [],
@@ -55,6 +55,8 @@ const App = () => {
   
   const [state, dispatch] = useReducer(reducer, initialValue)
   
+  const [open, setOpen] = useState(false)
+
   useEffect(() => {
     const getData = async () => {
       try {
@@ -79,6 +81,7 @@ const App = () => {
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/about' element={<About/>}/>
+        {/* <Route open={open} setOpen={setOpen} path='/modal' element={<Modal/>}/> */}
         <Route path='/wish-list' element={<WishList/>}/>
         <Route path='/cart' element={<Cart/>}/>
       </Routes>

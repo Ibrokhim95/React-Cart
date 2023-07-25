@@ -15,7 +15,7 @@ const Header = () => {
     const handleSearch = (e) => {
         e.preventDefault()
         if (state.value.length > 0) {
-            const searchData = state.products.filter(item => item.title.toLowerCase().includes(state.value))
+            const searchData = state.products.filter(item => item.title.toLowerCase().includes(state.value.toLowerCase()))
             dispatch({ type: "PRODUCTS", payload: searchData })
         } else {
             dispatch({ type: "PRODUCTS", payload: state.AllProducts })

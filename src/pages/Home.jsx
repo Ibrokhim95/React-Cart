@@ -1,6 +1,6 @@
 
 import axios from 'axios'
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ProductsContex } from '../App'
 import "../axios/global-instances"
@@ -36,6 +36,9 @@ export const wishList = (item, state, dispatch) => {
 }
 
 const Home = () => {
+
+    const [open, setOpen] = useState(false)
+
 
     const [state, dispatch] = useContext(ProductsContex)
 
@@ -75,6 +78,7 @@ const Home = () => {
     }
 
     const itemInfo = (item) => {
+        setOpen(true)
         const obj = {
            title: item.title,
            brand: item.brand,
