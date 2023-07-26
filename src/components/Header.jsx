@@ -1,21 +1,22 @@
 
 
 
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ProductsContex } from '../App'
 
 const Header = () => {
 
     const [state, dispatch] = useContext(ProductsContex)
+    const [value, setValue] = useState("")
 
     let LS = JSON.parse(localStorage.getItem('cart')) ?? []
     let LSW = JSON.parse(localStorage.getItem('wish')) ?? []
 
     const handleSearch = (e) => {
         e.preventDefault()
-        if (state.value.length > 0) {
-            const searchData = state.products.filter(item => item.title.toLowerCase().includes(state.value.toLowerCase()))
+        if (value.length > 0) {
+            const searchData = state.products.filter(item => item.title.toLowerCase().includes(value.toLowerCase()))
             dispatch({ type: "PRODUCTS", payload: searchData })
         } else {
             dispatch({ type: "PRODUCTS", payload: state.AllProducts })
@@ -29,7 +30,7 @@ const Header = () => {
 
                 <form className='border text-xs flex rounded-lg overflow-hidden w-[100%] md:max-w-[50%]' onSubmit={(e) => handleSearch(e)}>
                     <label className='w-[80%] md:w-[75%]'>
-                        <input className='py-3 w-full' onChange={(e) => dispatch({ type: "VALUE", payload: e.target.value })} value={state.value} type="text" name="" id="" placeholder='Search...' />
+                        <input className='py-3 w-full' onChange={(e) => setValue(e.target.value)} value={value} type="text" name="" id="" placeholder='Search...' />
                     </label>
 
                     <button className='bg-black text-white px-4 w-[20%] md:w-[25%]'>Search</button>

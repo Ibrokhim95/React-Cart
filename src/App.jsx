@@ -10,7 +10,6 @@ import Cart from './pages/Cart'
 import Home from './pages/Home'
 import WishList from './pages/WishList'
 import "./axios/global-instances"
-import Modal from './components/Modal'
 import About from './pages/About'
 
 export const ProductsContex = createContext()
@@ -47,7 +46,6 @@ const App = () => {
   const initialValue = {
     AllProducts: [],
     products: [],
-    value: "",
     wish: [],
     cart: [],
     item: {},
