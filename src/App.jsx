@@ -11,6 +11,8 @@ import Home from './pages/Home'
 import WishList from './pages/WishList'
 import "./axios/global-instances"
 import About from './pages/About'
+import ModalCategories from './components/ModalCategories'
+import Spinner from './components/spinner/Spinner'
 
 export const ProductsContex = createContext()
 
@@ -53,20 +55,27 @@ const App = () => {
   
   const [state, dispatch] = useReducer(reducer, initialValue)
   
-  const [open, setOpen] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+  const [open, setOpen] = React.useState(false);
 
   useEffect(() => {
+    setIsLoading(true)
     const getData = async () => {
       try {
         const {data: {products}} = await axios.get("/products") 
         dispatch({type: "PRODUCTS", payload: products})
         dispatch({type: "ALL_PRODUCTS", payload: products})
+        setIsLoading(false)
       } catch (error) {
         console.log(error);
       }
     } 
     getData()
   }, [])
+
+  if(isLoading) {
+    return <Spinner/>
+  }
   
 
   return (
@@ -74,7 +83,8 @@ const App = () => {
 
     <div>
       <Navbar/>
-      <Header/>
+      <Header setOpen={setOpen}/>
+      <ModalCategories open={open} setOpen={setOpen}/>
 
       <Routes>
         <Route path='/' element={<Home/>}/>

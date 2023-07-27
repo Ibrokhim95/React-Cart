@@ -35,6 +35,26 @@ export const wishList = (item, state, dispatch) => {
     localStorage.setItem("wish", JSON.stringify(LS))
 }
 
+export const sort = async (e, dispatch, setOpen) => {
+    console.log(e);
+    setOpen(false)
+    if(e === "all") {
+        try {
+            const {data: {products}} = await axios.get("/products")
+            dispatch({type: "PRODUCTS", payload: products})
+        } catch (error) {
+            console.log(error);
+        }
+    } else {
+        try {
+            const {data: {products}} = await axios.get(`products/category/${e}`)
+            dispatch({type: "PRODUCTS", payload: products})
+        } catch (error) {
+            console.log(error);
+        }
+    }
+}
+
 const Home = () => {
 
     const [open, setOpen] = useState(false)
@@ -44,24 +64,6 @@ const Home = () => {
 
     const cols = document.getElementById("cols")
     const col = document.getElementById("col")
-
-    const sort = async (e) => {
-            if(e === "all") {
-                try {
-                    const {data: {products}} = await axios.get("/products")
-                    dispatch({type: "PRODUCTS", payload: products})
-                } catch (error) {
-                    console.log(error);
-                }
-            } else {
-                try {
-                    const {data: {products}} = await axios.get(`products/category/${e}`)
-                    dispatch({type: "PRODUCTS", payload: products})
-                } catch (error) {
-                    console.log(error);
-                }
-            }
-    }
 
     const display = (par) => {
         if(par === "col") {
@@ -95,7 +97,7 @@ const Home = () => {
     return (
         <div className='w-[80%] xl:w-[1200px] lg:w-[1000px] md:w-[730px] sm:w-[600px] mx-auto pb-20'>
             <div className='flex justify-between items-center'>
-                <select onChange={(e) => sort(e.target.value)} name="" id="" className='outline-none rounded my-4'>
+                <select onChange={(e) => sort(e.target.value, dispatch, setOpen)} name="" id="" className='outline-none rounded my-4'>
                     <option value="all">all</option>
                     <option value="smartphones">smartphones</option>
                     <option value="laptops">laptops</option>

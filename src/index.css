@@ -15,6 +15,18 @@
     }
 } */
 
+.category{
+    margin-block: 18px;
+    padding: 4px;
+    display: flex;
+    gap: 16px;
+    box-shadow: 1px 2px 5px 1px rgb(0 0 0 / 0.05);
+}
+
+.svg{
+    color: #ef4444;
+}
+
 @media (max-width: 1024px) {
     #menu {
         position: absolute;
