@@ -3,7 +3,7 @@
 import axios from 'axios'
 import React, { useEffect, useReducer, useState } from 'react'
 import { createContext } from 'react'
-import { Route, Routes } from 'react-router-dom'
+import { Link, Route, Routes } from 'react-router-dom'
 import Header from './components/Header'
 import Navbar from './components/Navbar'
 import Cart from './pages/Cart'
@@ -89,12 +89,11 @@ const App = () => {
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/about' element={<About/>}/>
-        {/* <Route open={open} setOpen={setOpen} path='/modal' element={<Modal/>}/> */}
         <Route path='/wish-list' element={<WishList/>}/>
         <Route path='/cart' element={<Cart/>}/>
       </Routes>
 
-      <h1 className='mt-[20px] mb-[100px] text-center'>This is made by <a className='text-blue-600' href="#">Ibrokhim</a></h1>
+      <h1 className='mt-[20px] mb-[100px] text-center'>This is made by <a className='text-blue-600' href="youtube.com" target={"_blank"}>Ibrokhim</a></h1>
     </div>
     </ProductsContex.Provider>
 
