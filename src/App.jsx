@@ -93,7 +93,7 @@ const App = () => {
         <Route path='/cart' element={<Cart/>}/>
       </Routes>
 
-      <h1 className='mt-[20px] mb-[100px] text-center'>This is made by <a className='text-blue-600' href="youtube.com" target={"_blank"}>Ibrokhim</a></h1>
+      <h1 className='mt-[20px] mb-[100px] text-center'>This is made by <a className='text-blue-600' href="https://i-khamraev.netlify.app/" target={"_blank"}>Ibrokhim</a></h1>
     </div>
     </ProductsContex.Provider>
 
