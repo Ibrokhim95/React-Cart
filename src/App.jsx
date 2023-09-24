@@ -93,6 +93,8 @@ const App = () => {
         <Route path='/wish-list' element={<WishList/>}/>
         <Route path='/cart' element={<Cart/>}/>
       </Routes>
+
+      <h1 className='mt-[20px] mb-[100px] text-center'>This is made by <a className='text-blue-600' href="#">Ibrokhim</a></h1>
     </div>
     </ProductsContex.Provider>
 

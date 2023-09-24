@@ -15,6 +15,12 @@
     }
 } */
 
+@layer base {
+    .button {
+        @apply text-xs border  outline outline-2 outline-red-500 w-[135px] bg-red-500 text-white p-1 rounded flex justify-center items-center lg:p-4 lg:text-xl lg:w-[250px]
+    }
+}
+
 .category{
     margin-block: 18px;
     padding: 4px;

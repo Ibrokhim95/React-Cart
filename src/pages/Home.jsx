@@ -107,7 +107,7 @@ const Home = () => {
                     <option value="home-decoration">home-decoration</option>
                 </select>
 
-                <div className='flex gap-2'>
+                <div className='sm:flex gap-2'>
                     <svg onClick={() => display("col")} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-8 h-8 boreder border-gray-500 border-2 text-gray-500 rounded p-1 hover:text-red-500">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM3.75 12h.007v.008H3.75V12zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm-.375 5.25h.007v.008H3.75v-.008zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
                     </svg>
@@ -167,12 +167,12 @@ const Home = () => {
 
             <div id='col' className='hidden grid grid-cols-1 gap-8'>
                 {state.products.map(item => (
-                    <div key={item.id} className="flex my-2 shadow rounded-lg overflow-hidden w-[60%]">
-                        <div className='w-[25%]'>
-                            <img className='h-[100%]' src={item.thumbnail} alt="" />
+                    <div key={item.id} className="flex flex-col md:flex-row my-2 shadow rounded-lg overflow-hidden">
+                        <div className='w-[100%] md:w-[40%] md:max-w-[350px]'>
+                            <img className='h-[100%] mx-auto' src={item.thumbnail} alt="" />
                         </div>
 
-                        <div className='p-4 flex flex-col gap-2'>
+                        <div className='p-4 flex flex-col gap-2 md:w-[400px]'>
                             <h2 className='font-bold text-lg'>{item.title}</h2>
 
                             <p><span className='line-through text-red-500 font-semibold'>${item.price}</span><span className='text-gray-400 text-xs'>(-{item.discountPercentage}%)</span><span className='text-green-500 ml-3 font-semibold'>${`${item.price - (item.price / (100 / item.discountPercentage))}`}</span></p>
@@ -198,23 +198,23 @@ const Home = () => {
                                 <span className='text-gray-400 ml-3'>({item.rating})</span>
                             </div>
 
-                            <div className='flex gap-4'>
-                                <div onClick={() => cartList(item, state, dispatch)} className='text-xs border border-1 outline outline-2 outline-red-500 w-[160px] bg-red-500 text-white p-4 rounded flex justify-center items-center'>
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-7 h-7 mx-auto">
+                        </div>
+
+                        <div className='w-[100%] md:w-[270px] mb-4 mx-auto flex md:flex-col justify-center items-center gap-2'>
+                                <div onClick={() => cartList(item, state, dispatch)} className='button'>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5 lg:w-7 lg:h-7 mx-auto">
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
                                     </svg>
                                     Add to cart
                                 </div>
 
-                                <div onClick={() => wishList(item, state, dispatch)} className='text-xs border border-1 outline outline-2 outline-red-500 w-[160px] bg-red-500 text-white p-4 rounded flex justify-center items-center'>
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-7 h-7 mx-auto">
+                                <div onClick={() => wishList(item, state, dispatch)} className='button'>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5 lg:w-7 lg:h-7 mx-auto">
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
                                     </svg>
-                                    Add to wishlist
+                                    Add to wish
                                 </div>
                             </div>
-
-                        </div>
                     </div>
                 ))}
             </div>

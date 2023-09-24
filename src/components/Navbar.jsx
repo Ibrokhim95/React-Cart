@@ -7,7 +7,7 @@ const Navbar = () => {
   return (
     <div className='w-[80%] xl:w-[1200px] lg:w-[1000px] md:w-[700px] sm:w-[600px] mx-auto py-4 grid grid-cols-2'>
       <ul className='flex items-center gap-2 text-xs sm:text-sm'>
-        <li>Home</li>
+        <Link to={'/'}>Home</Link>
         <li>Shop</li>
         <li>Pages</li>
         <li>Contact</li>
